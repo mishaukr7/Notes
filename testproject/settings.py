@@ -1,4 +1,5 @@
 import os
+from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -8,12 +9,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pq@nlqc^#&gcpk$7(yo#f-0#+1i+g86x&!rf3c8w(0_4f9bwyp'
+#SECRET_KEY = 'pq@nlqc^#&gcpk$7(yo#f-0#+1i+g86x&!rf3c8w(0_4f9bwyp'
 
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', cast=bool)
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
@@ -65,11 +68,11 @@ WSGI_APPLICATION = 'testproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'notes',
-        'USER': 'mykhailo',
-        'PASSWORD': 'user_pass',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': '',
     }
 }
 
