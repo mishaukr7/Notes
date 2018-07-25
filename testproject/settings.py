@@ -68,11 +68,10 @@ DATABASES = {
         'NAME': 'notes',
         'USER': 'mykhailo',
         'PASSWORD': 'user_pass',
-        'HOST': '77.47.204.180',
-        'PORT': '6122',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
