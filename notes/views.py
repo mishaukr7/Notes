@@ -8,10 +8,6 @@ import re
 from django.shortcuts import HttpResponseRedirect
 
 
-def get_uniq_len(data):
-    return len(Counter(map(str.lower, re.findall(r"[\w']+", data))))
-
-
 class NoteView(APIView):
 
     template_name = 'notes/note.html'
